@@ -37,7 +37,6 @@ export const navItems = [
   { label: 'Группы', to: '/groups' },
   { label: 'Новичку', to: '/novichku' },
   { label: 'Календарь', to: '/calendar' },
-  { label: 'Феникс', to: '/feniks' },
   { label: 'Контакты', to: '/contacts' }
 ] as const
 
