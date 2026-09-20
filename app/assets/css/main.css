@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ember-50: #fbf6f2;
+  --color-ember-100: #f5ebe2;
+  --color-ember-200: #ead5c4;
+  --color-ember-300: #d9b396;
+  --color-ember-400: #c88a62;
+  --color-ember-500: #b86a42;
+  --color-ember-600: #a35535;
+  --color-ember-700: #87442d;
+  --color-ember-800: #6f3a2a;
+  --color-ember-900: #5b3226;
+  --color-ember-950: #31180f;
+
+  --color-volga-50: #f3f7f8;
+  --color-volga-100: #e0ebef;
+  --color-volga-200: #c3d7df;
+  --color-volga-300: #9abbc8;
+  --color-volga-400: #6a97ab;
+  --color-volga-500: #4f7c91;
+  --color-volga-600: #436578;
+  --color-volga-700: #3a5463;
+  --color-volga-800: #344754;
+  --color-volga-900: #2e3d48;
+  --color-volga-950: #1a252c;
+
+  --color-mist-50: #f5f7f8;
+  --color-mist-100: #e8eef1;
+  --color-mist-200: #d2dde3;
+  --color-mist-300: #b0c2cd;
+  --color-mist-400: #87a1b1;
+  --color-mist-500: #6a8698;
+  --color-mist-600: #556d7e;
+  --color-mist-700: #465967;
+  --color-mist-800: #3c4b56;
+  --color-mist-900: #354049;
+  --color-mist-950: #232b31;
+}
+
+:root {
+  --nn-header-offset: 7.25rem;
+  --nn-ink: #1a252c;
+  --nn-ink-soft: rgb(26 37 44 / 0.72);
+  --nn-paper: #eef2f4;
+  --nn-surface: rgb(255 255 255 / 0.45);
+  --nn-header: rgb(238 242 244 / 0.95);
+  --nn-dusk: linear-gradient(
+    168deg,
+    #e7eef2 0%,
+    #d2e0e8 24%,
+    #9eb8c6 50%,
+    #d08b5c 76%,
+    #a35535 100%
+  );
+  --nn-body-bg:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgb(200 218 228 / 0.9), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 10%, rgb(200 138 98 / 0.18), transparent 50%),
+    linear-gradient(180deg, #e8eef2 0%, #eef2f4 40%, #e4ebef 100%);
+}
+
+.dark {
+  --nn-ink: #e8eef2;
+  --nn-ink-soft: rgb(232 238 242 / 0.72);
+  --nn-paper: #141c22;
+  --nn-surface: rgb(255 255 255 / 0.06);
+  --nn-header: rgb(20 28 34 / 0.92);
+  --nn-dusk: linear-gradient(
+    168deg,
+    #152028 0%,
+    #1e303a 28%,
+    #2a4552 52%,
+    #7a4a32 78%,
+    #5c3220 100%
+  );
+  --nn-body-bg:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgb(55 125 145 / 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 10%, rgb(184 106 66 / 0.14), transparent 50%),
+    linear-gradient(180deg, #121920 0%, #141c22 45%, #182229 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--nn-ink);
+  background-color: var(--nn-paper);
+  background-image: var(--nn-body-bg);
+  min-height: 100dvh;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.nn-hero-sky {
+  background: var(--nn-dusk);
+}
+
+.nn-ink {
+  color: var(--nn-ink);
+}
+
+.nn-ink-soft {
+  color: var(--nn-ink-soft);
+}
+
+.nn-header {
+  background-color: transparent;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nn-header.is-solid {
+  background-color: var(--nn-header);
+  box-shadow: 0 1px 0 rgb(26 37 44 / 0.06);
+}
+
+.dark .nn-header.is-solid {
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.nn-surface {
+  background-color: var(--nn-surface);
+}
+
+.nn-river-band {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(67 101 120 / 0.28) 42%,
+    rgb(26 37 44 / 0.82) 100%
+  );
+}
+
+.dark .nn-river-band {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(67 101 120 / 0.2) 45%,
+    rgb(8 12 16 / 0.88) 100%
+  );
+}
+
+@keyframes rise-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nn-rise {
+    animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .nn-rise-1 { animation-delay: 0.08s; }
+  .nn-rise-2 { animation-delay: 0.16s; }
+  .nn-rise-3 { animation-delay: 0.24s; }
+  .nn-rise-4 { animation-delay: 0.32s; }
+}
+
+.nn-link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1.5px;
+  transition: background-size 0.25s ease;
+}
+
+.nn-link-line:hover {
+  background-size: 100% 1.5px;
+}
