@@ -87,7 +87,7 @@ function mobileLabel(group: Group) {
                 :to="`/groups/${group.slug}`"
                 class="nn-week-time inline-block font-semibold leading-none tracking-tight"
                 :class="day === today
-                  ? 'rounded bg-ember-600 px-0.5 text-white'
+                  ? 'text-ember-800 dark:text-ember-200'
                   : 'nn-ink'"
               >
                 {{ group.schedule[day] }}
