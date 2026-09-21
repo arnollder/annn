@@ -42,18 +42,19 @@ const today = map[new Date().getDay()]!
       </UContainer>
     </section>
 
-    <UContainer class="py-10">
-      <div class="grid gap-12 lg:grid-cols-5">
+    <UContainer class="space-y-12 py-10">
+      <!-- верх: расписание | место + инфолиния -->
+      <div class="grid gap-10 lg:grid-cols-5 lg:gap-12">
         <div class="space-y-10 lg:col-span-3">
           <div>
             <h2 class="font-display text-xl font-semibold tracking-tight">
               Расписание
             </h2>
-            <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <div class="mt-5 grid grid-cols-7 gap-2">
               <div
                 v-for="day in dayOrder"
                 :key="day"
-                class="px-3 py-3 text-center"
+                class="px-1 py-3 text-center sm:px-3"
                 :class="group.schedule[day]
                   ? (today === day ? 'bg-ember-600 text-white' : 'bg-volga-950/5 nn-ink dark:bg-white/10')
                   : 'text-volga-400'"
@@ -111,8 +112,6 @@ const today = map[new Date().getDay()]!
             </p>
           </div>
 
-          <GroupDirections :group="group" />
-
           <div class="bg-volga-950 p-6 text-volga-50 sm:p-7">
             <p class="text-[12px] font-semibold uppercase tracking-[0.18em] text-ember-300">
               Информационная линия
@@ -136,6 +135,9 @@ const today = map[new Date().getDay()]!
           </div>
         </aside>
       </div>
+
+      <!-- низ: как пройти на всю ширину -->
+      <GroupDirections :group="group" />
     </UContainer>
   </div>
 </template>
