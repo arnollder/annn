@@ -1,6 +1,5 @@
 export const site = {
   name: 'Анонимные Наркоманы',
-  shortName: 'АННН',
   city: 'Нижний Новгород и область',
   slogan: 'Жизнь без наркотиков возможна',
   phone: {
@@ -34,8 +33,9 @@ export const site = {
 
 export const navItems = [
   { label: 'Главная', to: '/' },
-  { label: 'Группы', to: '/groups' },
   { label: 'Новичку', to: '/novichku' },
+  { label: 'Группы', to: '/groups' },
+  { label: 'Комитеты', to: '/komitety' },
   { label: 'Календарь', to: '/calendar' },
   { label: 'Контакты', to: '/contacts' }
 ] as const

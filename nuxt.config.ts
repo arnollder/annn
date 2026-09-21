@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },
-      titleTemplate: '%s · АННН',
+      titleTemplate: '%s · Нижний Новгород',
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     '/': { prerender: false },
     '/groups': { prerender: true },
     '/groups/**': { prerender: true },
+    '/komitety': { prerender: true },
     '/novichku': { prerender: true },
     '/calendar': { prerender: true },
     '/feniks': { prerender: true },

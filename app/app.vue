@@ -75,13 +75,8 @@ watch(() => route.path, () => {
             class="group flex items-center gap-3 rounded-md py-1 pe-2 focus-visible:outline-3 outline-ember-500/30"
           >
             <AppLogo class="size-9 shrink-0 transition group-hover:scale-[1.03]" />
-            <span class="leading-tight">
-              <span class="font-display block text-xl font-semibold tracking-tight nn-ink">
-                {{ site.shortName }}
-              </span>
-              <span class="hidden text-[12px] nn-ink-soft sm:block">
-                Анонимные Наркоманы
-              </span>
+            <span class="font-display text-xl font-semibold tracking-tight nn-ink sm:text-[1.35rem]">
+              {{ site.name }}
             </span>
           </NuxtLink>
         </template>
@@ -139,7 +134,7 @@ watch(() => route.path, () => {
           <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
             <div>
               <p class="font-display text-3xl font-semibold tracking-tight text-white">
-                {{ site.shortName }}
+                {{ site.name }}
               </p>
               <p class="mt-4 max-w-md text-base leading-relaxed text-volga-200/90">
                 Здесь можно начать заново — без осуждения и без обязательств.

@@ -20,9 +20,6 @@ const events = upcomingEvents(4)
       <KremlinSilhouette />
 
       <UContainer class="relative z-10 flex min-h-[min(94dvh,880px)] flex-col justify-start pt-16 pb-[42vh] sm:pt-24 sm:pb-[38vh]">
-        <p class="nn-rise nn-ink-soft font-display text-[13px] font-semibold uppercase tracking-[0.28em]">
-          {{ site.shortName }}
-        </p>
         <h1 class="nn-rise nn-rise-1 nn-ink mt-3 max-w-[14ch] font-display text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.03em]">
           Анонимные Наркоманы
         </h1>
