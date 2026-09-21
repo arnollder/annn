@@ -208,7 +208,7 @@ function onFlyerOpenChange(open: boolean) {
       :open="flyerOpen"
       :ui="{
         overlay: 'bg-volga-950/35 backdrop-blur-xl dark:bg-black/50',
-        content: 'w-[min(96vw,32rem)] max-w-none bg-transparent p-0 shadow-none ring-0 divide-y-0 sm:w-auto sm:max-w-[min(92vw,28rem)]'
+        content: 'w-auto max-w-[min(96vw,40rem)] bg-transparent p-0 shadow-none ring-0 divide-y-0'
       }"
       :close="false"
       @update:open="onFlyerOpenChange"
@@ -221,7 +221,7 @@ function onFlyerOpenChange(open: boolean) {
           <img
             :src="activeEvent.flyer"
             :alt="activeEvent.title"
-            class="h-auto w-full max-h-[min(88dvh,960px)] rounded-xl object-contain shadow-[0_24px_80px_-20px_rgb(0_0_0_/0.55)]"
+            class="h-auto max-h-[min(90dvh,1100px)] w-auto max-w-full rounded-xl object-contain shadow-[0_24px_80px_-20px_rgb(0_0_0_/0.55)]"
           >
           <div class="mt-3 text-center">
             <p class="font-display text-sm font-medium text-white/90 drop-shadow">
