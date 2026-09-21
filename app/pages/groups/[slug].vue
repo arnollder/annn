@@ -97,12 +97,6 @@ const today = map[new Date().getDay()]!
               {{ group.address }}
             </p>
             <p
-              v-if="group.howToFind"
-              class="mt-3 text-sm leading-relaxed text-volga-500"
-            >
-              {{ group.howToFind }}
-            </p>
-            <p
               v-if="group.online && group.zoom"
               class="mt-3 space-y-1 text-volga-700 dark:text-volga-300"
             >
@@ -110,12 +104,14 @@ const today = map[new Date().getDay()]!
               <span class="block">Пароль: {{ group.zoom.password }}</span>
             </p>
             <p
-              v-if="!group.address && !group.online && !group.howToFind"
+              v-if="!group.address && !group.online"
               class="mt-3 text-volga-500"
             >
               Уточни адрес по телефону информационной линии.
             </p>
           </div>
+
+          <GroupDirections :group="group" />
 
           <div class="bg-volga-950 p-6 text-volga-50 sm:p-7">
             <p class="text-[12px] font-semibold uppercase tracking-[0.18em] text-ember-300">
