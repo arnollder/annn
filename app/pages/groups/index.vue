@@ -27,9 +27,9 @@ const filtered = computed(() => {
 })
 
 const dayItems = [
-  { label: 'Все дни', value: 'all' as const },
+  { label: 'Все', value: 'all' as const },
   ...dayOrder.map(d => ({
-    label: d === today ? `${dayLabels[d]} · сегодня` : dayLabels[d],
+    label: d === today ? `${dayLabels[d]}*` : dayLabels[d],
     value: d
   }))
 ]
@@ -40,71 +40,117 @@ const placeItems = [
   { label: 'Область', value: 'oblast' as const },
   { label: 'Online', value: 'online' as const }
 ]
+
+function resetFilters() {
+  q.value = ''
+  dayFilter.value = 'all'
+  placeFilter.value = 'all'
+}
 </script>
 
 <template>
   <div>
-    <section class="border-b border-volga-900/10 py-14 dark:border-white/10">
-      <UContainer>
+    <section class="relative overflow-hidden border-b border-volga-900/10 dark:border-white/10">
+      <div class="nn-hero-sky absolute inset-0 opacity-40" />
+      <UContainer class="relative py-12 sm:py-16">
         <p class="text-[12px] font-semibold uppercase tracking-[0.22em] text-ember-700">
           {{ groups.length }} групп · Нижний и область
         </p>
         <h1 class="font-display nn-ink mt-3 max-w-xl text-4xl font-semibold tracking-tight sm:text-5xl">
           Группы и расписание
         </h1>
-        <p class="mt-4 max-w-xl text-lg text-volga-700 dark:text-volga-300">
-          Адрес и как пройти — на странице группы. Фильтруй по дню или городу.
+        <p class="mt-4 max-w-xl text-lg leading-relaxed nn-ink-soft">
+          Адрес и как пройти — на странице группы. Фильтруй по дню или месту.
         </p>
 
-        <div class="mt-8 flex flex-col gap-3 lg:flex-row lg:items-center">
+        <div class="mt-8 max-w-xl">
           <UInput
             v-model="q"
             icon="i-lucide-search"
             placeholder="Название, город, улица…"
             size="lg"
-            class="w-full lg:max-w-sm"
+            class="w-full"
           />
-          <USelect
-            v-model="dayFilter"
-            :items="dayItems"
-            value-key="value"
-            size="lg"
-            class="w-full lg:w-48"
-          />
-          <USelect
-            v-model="placeFilter"
-            :items="placeItems"
-            value-key="value"
-            size="lg"
-            class="w-full lg:w-44"
-          />
+        </div>
+
+        <div class="mt-6 space-y-4">
+          <div>
+            <p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-volga-500">
+              День
+            </p>
+            <div class="flex flex-wrap gap-x-1 gap-y-1">
+              <button
+                v-for="item in dayItems"
+                :key="item.value"
+                type="button"
+                class="rounded-md px-2.5 py-1.5 text-sm font-medium transition"
+                :class="dayFilter === item.value
+                  ? 'bg-ember-600 text-white'
+                  : 'text-volga-600 hover:bg-volga-900/5 hover:text-volga-900 dark:text-volga-300 dark:hover:bg-white/5 dark:hover:text-white'"
+                @click="dayFilter = item.value"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-volga-500">
+              Место
+            </p>
+            <div class="flex flex-wrap gap-x-1 gap-y-1">
+              <button
+                v-for="item in placeItems"
+                :key="item.value"
+                type="button"
+                class="rounded-md px-2.5 py-1.5 text-sm font-medium transition"
+                :class="placeFilter === item.value
+                  ? 'bg-volga-900 text-white dark:bg-white dark:text-volga-950'
+                  : 'text-volga-600 hover:bg-volga-900/5 hover:text-volga-900 dark:text-volga-300 dark:hover:bg-white/5 dark:hover:text-white'"
+                @click="placeFilter = item.value"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+          </div>
         </div>
       </UContainer>
     </section>
 
-    <UContainer class="py-6 sm:py-8">
-      <p class="mb-2 text-sm text-volga-500">
-        Найдено: {{ filtered.length }}
+    <UContainer class="py-8 sm:py-10">
+      <p class="mb-5 text-sm text-volga-500">
+        <template v-if="filtered.length === groups.length">
+          Все {{ groups.length }} групп
+        </template>
+        <template v-else>
+          Найдено {{ filtered.length }} из {{ groups.length }}
+        </template>
       </p>
-      <div class="max-w-3xl">
+
+      <div
+        v-if="filtered.length"
+        class="mx-auto max-w-3xl"
+      >
         <GroupCard
           v-for="group in filtered"
           :key="group.slug"
           :group="group"
+          :highlight-day="dayFilter === 'all' ? today : dayFilter"
         />
       </div>
+
       <div
-        v-if="!filtered.length"
+        v-else
         class="border-y border-dashed border-volga-900/15 py-16 text-center"
       >
-        <p class="text-volga-600">
+        <p class="text-volga-600 dark:text-volga-300">
           Ничего не нашлось. Сбрось фильтры или позвони на инфолинию.
         </p>
         <UButton
           class="mt-4"
           label="Сбросить"
           variant="soft"
-          @click="q = ''; dayFilter = 'all'; placeFilter = 'all'"
+          @click="resetFilters"
         />
       </div>
     </UContainer>

@@ -9,21 +9,26 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-1">
+  <div
+    class="flex gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible"
+    role="list"
+    aria-label="Расписание по дням"
+  >
     <div
       v-for="day in dayOrder"
       :key="day"
-      class="min-w-10 px-1.5 py-1 text-center"
+      role="listitem"
+      class="min-w-[2.6rem] flex-1 px-1 py-1.5 text-center sm:min-w-10"
       :class="group.schedule[day]
         ? (highlightDay === day
-          ? 'bg-ember-600 text-white'
-          : 'bg-volga-950/5 text-volga-900 dark:bg-white/10 dark:text-volga-100')
-        : 'text-volga-400/70'"
+          ? 'rounded-md bg-ember-600 text-white'
+          : 'rounded-md bg-volga-950/[0.04] text-volga-900 dark:bg-white/[0.07] dark:text-volga-100')
+        : 'text-volga-400/55'"
     >
-      <div class="text-[10px] font-medium uppercase tracking-wider opacity-70">
+      <div class="text-[10px] font-medium uppercase tracking-[0.12em] opacity-75">
         {{ dayLabels[day] }}
       </div>
-      <div class="text-xs font-semibold tabular-nums">
+      <div class="mt-0.5 text-xs font-semibold tabular-nums leading-none">
         {{ group.schedule[day] || '·' }}
       </div>
     </div>
