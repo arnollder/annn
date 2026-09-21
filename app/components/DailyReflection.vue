@@ -8,15 +8,13 @@ interface Jft {
   quoteSource: string
   body: string
   source: string
+  day?: string
+  fetchedAt?: string
 }
 
 const { data, pending, error } = await useFetch<Jft>('/api/jft', {
   key: 'jft-today',
-  default: () => null,
-  // На статике /api/jft нет — берём то, что зашили при generate
-  getCachedData(key, nuxtApp) {
-    return nuxtApp.payload.data[key] ?? nuxtApp.static?.data?.[key]
-  }
+  default: () => null
 })
 
 const justToday = computed(() => {

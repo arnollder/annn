@@ -32,16 +32,33 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true },
+    // Живой SSR: ежедневник и API не запекаются в статику
+    '/': { prerender: false },
     '/groups': { prerender: true },
     '/groups/**': { prerender: true },
     '/novichku': { prerender: true },
     '/calendar': { prerender: true },
     '/feniks': { prerender: true },
-    '/contacts': { prerender: true }
+    '/contacts': { prerender: true },
+    '/api/jft': { prerender: false, cache: false }
   },
 
   nitro: {
+    preset: 'node-server',
+    experimental: {
+      tasks: true
+    },
+    // Внутри процесса (Croner) — без system crontab.
+    // Каждый час :05; сам task парсит только 00:00–05:59 МСК.
+    scheduledTasks: {
+      '5 * * * *': ['jft:refresh']
+    },
+    storage: {
+      data: {
+        driver: 'fs',
+        base: './.data'
+      }
+    },
     prerender: {
       crawlLinks: true
     }
